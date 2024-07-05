@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:validation_form/model/form_model.dart';
+import 'package:validation_form/presentation/registration_screen.dart';
+import 'package:validation_form/uikit/theme/theme_data.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ValidationFormApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ValidationFormApp extends StatelessWidget {
+  const ValidationFormApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (_) => FormModel(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.themeData,
+        home: const RegistrationFormWidget(),
       ),
     );
   }
